@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minhas Notícias - UniFECAF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="minhas-noticias.css">
+    <script src="scripts.js"></script>
+    <link rel="icon" type="image/png" href="assets/logo.png">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="assets/logo.png" alt="Logo UniFECAF" class="logo">
+                <h1 class="site-title">UniFECAF Notícias</h1>
+            </div>
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Notícias</a></li>
+                    <li class="nav-item"><a href="minhas-noticias.html" class="nav-link active">Minhas Notícias</a></li>
+                    <li class="nav-item"><a href="publicar.html" class="nav-link">Publicar Notícia</a></li>
+                    <li class="nav-item"><a href="comunidade.html" class="nav-link">Comunidades</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link" id="login-link">Login</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" id="logout-link" style="display: none;">Sair</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container minhas-noticias-container">
+            <h2>Minhas Notícias</h2>
+            <div id="noticias-lista" class="noticias-list">
+                <!-- Os cards de notícias aparecerão aqui -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2025 UniFECAF Notícias. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        window.onload = () => {
+            page.initMinhasNoticiasPage();
+        };
+    </script>
+</body>
+</html>

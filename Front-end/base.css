@@ -1,0 +1,150 @@
+/* Estilos globais (base.css) */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1C3260;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    flex-wrap: nowrap;
+}
+
+.logo {
+    height: 60px;
+    width: auto;
+    margin-right: 15px;
+    object-fit: contain;
+}
+
+.site-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0;
+    color: #000000;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+nav li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+nav a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+    display: block;
+    padding: 5px 0;
+}
+
+nav a:hover {
+    color: #003366;
+}
+
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    background-color: #1C3260;
+}
+
+footer {
+    background-color: #1C3260;
+    color: #ffffff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 20px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border-color: #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Estilo para a barra de pesquisa */
+.search-bar {
+    border-radius: 10px;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    width: 100%;
+    max-width: 300px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* Ajustes para melhor contraste */
+h1, h2, h3, h4, h5, h6 {
+    color: #ffffff;
+}
+
+p, span, div {
+    color: #ffffff;
+}
+
+/* Ajuste para links no conteúdo */
+main a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+main a:hover {
+    color: #003366;
+}

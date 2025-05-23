@@ -1,0 +1,219 @@
+/* noticia-detalhe.css */
+
+/* Definição de variáveis de cores para consistência */
+:root {
+    --unifecaf-blue: #003366;
+    --unifecaf-green: #00a651;
+    --unifecaf-light-blue: #007bff;
+    --text-color: #333;
+    --light-gray: #f5f5f5;
+    --medium-gray: #ccc;
+    --dark-gray: #6c757d;
+    --card-bg: #fff;
+    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.noticia-detalhe-container {
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.noticia-detalhe-titulo {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.noticia-detalhe-card {
+    background-color: #646986;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.noticia-detalhe-capa {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.noticia-detalhe-imagem {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noticia-detalhe-conteudo {
+    padding: 30px;
+}
+
+.noticia-detalhe-titulo {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.noticia-detalhe-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.noticia-detalhe-autor {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.noticia-detalhe-data {
+    font-size: 0.9em;
+}
+
+.noticia-detalhe-texto {
+    color: #ffffff;
+    line-height: 1.8;
+    font-size: 1.1em;
+    margin-bottom: 30px;
+}
+
+.noticia-detalhe-acoes {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.noticia-detalhe-botao {
+    padding: 10px 20px;
+    background-color: #003366;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.noticia-detalhe-botao:hover {
+    background-color: #004080;
+}
+
+/* Seção de Comentários */
+.comentarios-secao {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.comentarios-secao h2 {
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+#comentario-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre elementos do formulário */
+    margin-bottom: 30px;
+}
+
+#comentario-form label {
+    font-weight: bold;
+    color: var(--unifecaf-blue);
+}
+
+#comentario-form textarea {
+    min-height: 100px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 16px;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+#comentario-form button {
+    align-self: flex-start;
+    background-color: #003366;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#comentario-form button:hover {
+    background-color: #002244;
+}
+
+.lista-de-comentarios .comentario-item {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
+}
+
+.comentario-item strong {
+    color: #003366;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.comentario-item p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #000000;
+}
+
+.lista-de-comentarios > p {
+    font-style: italic;
+    color: #646986;
+}
+
+/* Responsividade básica (mantendo a consistência do base.css e index.css) */
+@media (max-width: 768px) {
+    .noticia-detalhe-container {
+        margin: 20px;
+        padding: 15px;
+    }
+
+    .noticia-detalhe-capa {
+        height: 300px;
+    }
+
+    .noticia-detalhe-conteudo {
+        padding: 20px;
+    }
+
+    .noticia-detalhe-titulo {
+        font-size: 1.6em;
+    }
+
+    .noticia-detalhe-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .comentarios-secao h2 {
+        font-size: 1.5em;
+    }
+}
+
+@media (max-width: 480px) {
+    .noticia-detalhe-titulo {
+        font-size: 1.5em;
+    }
+    .noticia-detalhe-capa {
+        max-height: 250px;
+    }
+}

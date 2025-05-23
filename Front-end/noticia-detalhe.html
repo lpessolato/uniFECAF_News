@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe da Notícia - UniFECAF</title> <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="noticia-detalhe.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-menu">
+            <img src="assets/logo.png" alt="Logo UniFECAF" class="logo">
+            <div class="menu-icon" id="menu-icon-trigger">☰</div>
+        </div>
+        <div class="auth-buttons" id="auth-buttons-container"></div>
+    </header>
+    <div class="sidebar" id="sidebar-nav"></div>
+
+    <main>
+        <div class="container noticia-detalhe-container">
+            <div class="logo-section">
+                <img src="assets/logo.png" alt="Logo UniFECAF" class="logo">
+                <h1 class="site-title">UniFECAF Notícias</h1>
+            </div>
+            <article>
+                <h1 id="noticia-titulo-detalhe">Título da Notícia</h1>
+                <span id="noticia-data-detalhe" class="data-publicacao">Data</span>
+                <div class="noticia-capa-detalhe-container">
+                    <img src="assets/default-image-placeholder.png" alt="Capa da Notícia" id="noticia-capa-detalhe">
+                </div>
+                <div id="noticia-descricao-detalhe" class="conteudo-noticia">
+                    <p>Carregando conteúdo...</p>
+                </div>
+            </article>
+
+            <section class="comentarios-secao">
+                <h2>Comentários</h2>
+                <div id="message-area-comentarios"></div>
+                <form id="comentario-form">
+                    <label for="comentario-texto">Deixe seu comentário:</label>
+                    <textarea id="comentario-texto" rows="4" placeholder="Escreva seu comentário..." required></textarea>
+                    <button type="submit" class="btn-primary">Enviar Comentário</button>
+                </form>
+                <div id="comentarios-lista" class="lista-de-comentarios">
+                    <p>Nenhum comentário ainda.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="scripts.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            ui.initBaseLayout();
+            page.initNoticiaDetalhePage();
+        });
+    </script>
+</body>
+</html>

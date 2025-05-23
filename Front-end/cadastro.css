@@ -1,0 +1,99 @@
+/* Estilos da página de cadastro (cadastro.css) */
+.cadastro-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #646986;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro-titulo {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.cadastro-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.cadastro-form label {
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+.cadastro-form input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.form-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.cadastro-botao {
+    padding: 10px;
+    background-color: #003366;
+    color: #ffffff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.cadastro-botao:hover {
+    background-color: #004080;
+}
+
+.cadastro-links {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.cadastro-links a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.2s ease-in-out;
+}
+
+.cadastro-links a:hover {
+    color: #003366;
+}
+
+.cadastro-mensagem {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.cadastro-mensagem.sucesso {
+    background-color: #28a745;
+    color: #ffffff;
+}
+
+.cadastro-mensagem.erro {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .cadastro-container {
+        margin: 20px;
+        padding: 15px;
+    }
+}
