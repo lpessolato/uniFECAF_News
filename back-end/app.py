@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 import logging
 from datetime import datetime
 import time
+from flask_swagger_ui import get_swaggerui_blueprint
+from flask_redoc import Redoc
 
 # Configuração do logging
 logging.basicConfig(
@@ -32,6 +34,22 @@ CORS(app, resources={
         "allow_headers": ["Content-Type", "Authorization"]
     }
 })
+
+# Configuração do Swagger
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "UniFECAF Notícias API"
+    }
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+
+# Configuração do ReDoc
+redoc = Redoc(app, 'UniFECAF Notícias API', 'static/swagger.json')
+
 DB_PATH = os.path.join(os.path.dirname(__file__), 'database', 'data.db')
 NEWS_API_KEY = 'b863b61d3dbb49989f2cad9d0227846f'
 
@@ -350,6 +368,252 @@ def like_comentario(comentario_id):
 @app.route('/health')
 def health_check():
     return jsonify({'status': 'healthy'}), 200
+
+# Adicionar rota para o arquivo swagger.json
+@app.route('/static/swagger.json')
+def send_swagger_json():
+    swagger_config = {
+        "openapi": "3.0.0",
+        "info": {
+            "title": "UniFECAF Notícias API",
+            "version": "1.0.0",
+            "description": "API para o sistema de gerenciamento de notícias da UniFECAF"
+        },
+        "servers": [
+            {
+                "url": "http://localhost:8010",
+                "description": "Servidor de desenvolvimento"
+            }
+        ],
+        "paths": {
+            "/register": {
+                "post": {
+                    "summary": "Cadastrar novo usuário",
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["nome", "email", "senha", "curso"],
+                                    "properties": {
+                                        "nome": {"type": "string"},
+                                        "email": {"type": "string", "format": "email"},
+                                        "senha": {"type": "string"},
+                                        "curso": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Usuário cadastrado com sucesso"
+                        },
+                        "400": {
+                            "description": "E-mail já cadastrado"
+                        }
+                    }
+                }
+            },
+            "/login": {
+                "post": {
+                    "summary": "Login de usuário",
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["email", "senha"],
+                                    "properties": {
+                                        "email": {"type": "string", "format": "email"},
+                                        "senha": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Login bem-sucedido",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {"type": "integer"},
+                                            "nome": {"type": "string"},
+                                            "curso": {"type": "string"}
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "401": {
+                            "description": "Credenciais inválidas"
+                        }
+                    }
+                }
+            },
+            "/publish": {
+                "post": {
+                    "summary": "Publicar nova notícia",
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "multipart/form-data": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["titulo", "categoria", "data", "descricao", "capa", "autor_id"],
+                                    "properties": {
+                                        "titulo": {"type": "string"},
+                                        "categoria": {"type": "string"},
+                                        "data": {"type": "string", "format": "date"},
+                                        "descricao": {"type": "string"},
+                                        "capa": {"type": "string", "format": "binary"},
+                                        "autor_id": {"type": "integer"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Notícia publicada com sucesso"
+                        },
+                        "400": {
+                            "description": "Dados inválidos ou conteúdo sensível detectado"
+                        }
+                    }
+                }
+            },
+            "/noticias": {
+                "get": {
+                    "summary": "Listar notícias",
+                    "responses": {
+                        "200": {
+                            "description": "Lista de notícias",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {"type": "integer"},
+                                                "titulo": {"type": "string"},
+                                                "categoria": {"type": "string"},
+                                                "data": {"type": "string"},
+                                                "descricao": {"type": "string"},
+                                                "capa": {"type": "string"},
+                                                "autor_id": {"type": "integer"}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/comentarios": {
+                "get": {
+                    "summary": "Listar comentários",
+                    "responses": {
+                        "200": {
+                            "description": "Lista de comentários",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "id": {"type": "integer"},
+                                                "texto": {"type": "string"},
+                                                "nome": {"type": "string"},
+                                                "curso": {"type": "string"},
+                                                "data": {"type": "string"},
+                                                "user_id": {"type": "integer"},
+                                                "likes": {"type": "array", "items": {"type": "integer"}}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "post": {
+                    "summary": "Adicionar comentário",
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["texto", "nome", "curso", "user_id"],
+                                    "properties": {
+                                        "texto": {"type": "string"},
+                                        "nome": {"type": "string"},
+                                        "curso": {"type": "string"},
+                                        "user_id": {"type": "integer"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Comentário adicionado com sucesso"
+                        },
+                        "400": {
+                            "description": "Dados inválidos"
+                        }
+                    }
+                }
+            },
+            "/comentarios/{comentario_id}/like": {
+                "post": {
+                    "summary": "Curtir comentário",
+                    "parameters": [
+                        {
+                            "name": "comentario_id",
+                            "in": "path",
+                            "required": True,
+                            "schema": {
+                                "type": "integer"
+                            }
+                        }
+                    ],
+                    "requestBody": {
+                        "required": True,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "required": ["user_id"],
+                                    "properties": {
+                                        "user_id": {"type": "integer"}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Like adicionado com sucesso"
+                        },
+                        "400": {
+                            "description": "Dados inválidos"
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return jsonify(swagger_config)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8010, debug=True) 
