@@ -48,7 +48,15 @@ swaggerui_blueprint = get_swaggerui_blueprint(
 app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 # Configuração do ReDoc
-redoc = Redoc(app, 'UniFECAF Notícias API', 'static/swagger.json')
+app.config['REDOC'] = {
+    'title': 'UniFECAF Notícias API',
+    'spec_url': '/static/swagger.json',
+    'redoc_options': {
+        'scrollYOffset': 50,
+        'hideHostname': True
+    }
+}
+redoc = Redoc(app)
 
 DB_PATH = os.path.join(os.path.dirname(__file__), 'database', 'data.db')
 NEWS_API_KEY = 'b863b61d3dbb49989f2cad9d0227846f'

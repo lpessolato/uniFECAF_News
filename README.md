@@ -100,6 +100,25 @@ A documentação completa da API está disponível em dois formatos:
   - Likes em comentários
   - Comunidades por curso
 
+## 🛠️ Utilitários
+
+### Limpeza do Banco de Dados
+O sistema inclui um script utilitário para limpar o banco de dados de forma segura:
+
+```bash
+cd back-end
+python3 clean_db.py
+```
+
+Este script realiza as seguintes operações:
+- Remove todas as notícias
+- Remove todos os comentários
+- Reseta os contadores de ID (auto-increment)
+- Mantém os usuários cadastrados
+- Fornece feedback visual do processo
+
+⚠️ **Atenção**: Este script deve ser usado com cautela, pois remove permanentemente todos os dados de notícias e comentários.
+
 ## 🛠️ Tecnologias Utilizadas
 
 ### Frontend
@@ -133,7 +152,10 @@ uniFECAF_News/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
 │   ├── requirements.txt
+│   ├── clean_db.py
 │   └── database/
+│       ├── data.db
+│       └── capas/
 ├── Front-end/
 │   ├── src/
 │   ├── public/
